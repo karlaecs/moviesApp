@@ -3,7 +3,7 @@ import {T, F} from 'lodash/fp';
 import {handleActions} from 'redux-actions';
 import actions from './actions';
 
-const movies = combineReducers({
+export default combineReducers({
   upcoming: combineReducers({
     data: handleActions(
       {
@@ -23,5 +23,3 @@ const movies = combineReducers({
     ),
   }),
 });
-
-export default movies;

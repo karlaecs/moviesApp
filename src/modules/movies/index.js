@@ -1,4 +1,4 @@
 export {default as Movies} from './movies';
-export {default as MoviesReducer} from './reducers';
-export {default as MoviesSagas} from './sagas';
-export {default as MoviesActions} from './actions';
+export {default as movies} from './reducers';
+export {default as moviesSagas} from './sagas';
+export {default as moviesActions} from './actions';

@@ -8,6 +8,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+import actions from './actions';
 
 import {
   SafeAreaView,
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  upcomingMovies: state.movies.upcoming.data,
+  upcomingMovies: state,
 });
 
 const mapDispatchToProps = {
