@@ -1,3 +1,4 @@
+/* global window*/
 import reduxSaga from 'redux-saga';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {combineReducers} from 'redux';
@@ -13,6 +14,7 @@ const rootSaga = function*() {
   const _sagas = [moviesSagas];
   yield all(_.map(_sagas, _.unary(fork)));
 };
+
 // App Reducers
 const combinedReducer = combineReducers({
   movies,

@@ -1,4 +1,3 @@
-/*global process*/
 import axios from 'axios';
 
 import {REACT_APP_BASE_URL, REACT_APP_API_KEY} from 'react-native-dotenv';
@@ -11,7 +10,7 @@ const API = axios.create({
 const getApiKey = () => REACT_APP_API_KEY;
 
 const endpoints = {
-  movie: {
+  movies: {
     upcoming: {
       list: ({page}) =>
         `${REACT_APP_BASE_URL}movie/upcoming?api_key=${REACT_APP_API_KEY}&page=${page}`,
