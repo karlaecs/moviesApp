@@ -29,7 +29,7 @@ export const movies = combineReducers({
         [moviesActions.upcoming.fetch.request]: T,
         [moviesActions.upcoming.fetch.resolve]: F,
       },
-      true,
+      false,
     ),
   }),
 });
