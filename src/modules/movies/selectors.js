@@ -18,3 +18,8 @@ export const getUpcomingMoviesTotalPages = createSelector(
   _.getOr(0, 'movies.upcoming.data.total_pages'),
   _.identity,
 );
+
+export const getLoadingUpcomingMovies = createSelector(
+  _.get('movies.upcoming.loading'),
+  _.identity,
+);

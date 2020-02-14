@@ -9,10 +9,10 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {SafeAreaView, StatusBar, View, StyleSheet} from 'react-native';
-import {NativeRouter, Route} from 'react-router-native';
+import {NativeRouter, Route, Redirect} from 'react-router-native';
 import Colors from './src/themes/colors';
 import store from './src/store';
-import {Movies} from './src/modules';
+import {Movies, MoviesDetails} from './src/modules';
 
 const App: () => React$Node = () => {
   return (
@@ -21,8 +21,15 @@ const App: () => React$Node = () => {
         <View style={styles.container}>
           <StatusBar backgroundColor={Colors.black} barStyle="light-content" />
           <SafeAreaView>
-            <Route exact path="/movies" component={Movies} />
-            <Route component={Movies} />
+            <Route exact path="/">
+              <Redirect to="/movies/theatres" />
+            </Route>
+            <Route exact path="/movies/theatres" component={Movies} />
+            <Route
+              exact
+              path="/movies/theatres/:id"
+              component={MoviesDetails}
+            />
           </SafeAreaView>
         </View>
       </NativeRouter>

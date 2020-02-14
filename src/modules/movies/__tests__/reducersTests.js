@@ -5,7 +5,7 @@ describe('test module movies/reducers', () => {
     expect(movies(undefined, {})).toEqual({
       upcoming: {
         data: [],
-        loading: false,
+        loading: true,
       },
     });
   });

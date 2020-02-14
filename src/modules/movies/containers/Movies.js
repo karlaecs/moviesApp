@@ -8,12 +8,17 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {ScrollView, View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import _ from 'lodash';
 import {moviesActions} from '../ducks';
-import {getUpcomingMovies} from '../selectors';
+import {getUpcomingMovies, getLoadingUpcomingMovies} from '../selectors';
+import {MovieList, Search, Menu, Footer} from '../../../components';
 
 export class Movies extends React.Component {
+  state = {
+    text: null,
+  };
+
   componentDidMount = () => {
     const {fetchUpcomingMovies} = this.props;
     fetchUpcomingMovies({page: 1});
@@ -25,23 +30,32 @@ export class Movies extends React.Component {
     return !_.isEqual(upcomingMovies, prevProps.upcomingMovies);
   };
 
+  // Search
+  onChangeText = text => this.setState({text});
+  onSubmitEditing = () => {
+    const {text} = this.state;
+
+    alert(`Search ${text}`);
+  };
+
   render() {
+    const {upcomingMovies, match, loadingUpcomingMovies} = this.props;
+    const {text} = this.state;
+
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <Text style={{color: 'white'}}>
-            What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the
-            leap into electronic typesetting, remaining essentially unchanged.
-            It was popularised in the 1960s with the release of Letraset sheets
-            containing Lorem Ipsum passages, and more recently with desktop
-            publishing software like Aldus PageMaker including versions of Lorem
-            Ipsum.
-          </Text>
-        </ScrollView>
+        <Search
+          value={text}
+          onChangeText={this.onChangeText}
+          onSubmitEditing={this.onSubmitEditing}
+        />
+        <Menu match={match} />
+        <MovieList
+          items={upcomingMovies}
+          loading={loadingUpcomingMovies}
+          match={match}
+        />
+        <Footer />
       </View>
     );
   }
@@ -51,11 +65,13 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
     paddingVertical: 15,
+    height: '100%',
   },
 });
 
 const mapStateToProps = state => ({
   upcomingMovies: getUpcomingMovies(state),
+  loadingUpcomingMovies: getLoadingUpcomingMovies(state),
 });
 
 const mapDispatchToProps = {
