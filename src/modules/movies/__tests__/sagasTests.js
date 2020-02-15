@@ -12,13 +12,13 @@ import {watchFetchUpcomingMovies} from '../sagas';
 describe('test module movies/sagas', () => {
   test('test API integration: fetch upcoming movies is success', async () => {
     let {data} = store.getState().movies.upcoming;
-    expect(data).toEqual([]);
+    expect(data).toEqual({});
 
     await runSaga(store, watchFetchUpcomingMovies, {payload: {page: 1}});
     await store.subscribe(async () => {
       const state = store.getState();
       const {results} = state.movies.upcoming.data;
-      await expect(results).not.toEqual([]);
+      await expect(results).not.toEqual({});
     });
   });
 });

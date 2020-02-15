@@ -52,6 +52,9 @@ export default StyleSheet.create({
   separator: {},
   header: {},
   footer: {
-    marginBottom: pixelToHpPercent(20),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: pixelToHpPercent(50),
   },
 });

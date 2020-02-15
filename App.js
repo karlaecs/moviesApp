@@ -18,20 +18,16 @@ const App: () => React$Node = () => {
   return (
     <Provider store={store}>
       <NativeRouter>
-        <View style={styles.container}>
+        {/* <SafeAreaView> */}
+        <SafeAreaView style={styles.container}>
           <StatusBar backgroundColor={Colors.black} barStyle="light-content" />
-          <SafeAreaView>
-            <Route exact path="/">
-              <Redirect to="/movies/theatres" />
-            </Route>
-            <Route exact path="/movies/theatres" component={Movies} />
-            <Route
-              exact
-              path="/movies/theatres/:id"
-              component={MoviesDetails}
-            />
-          </SafeAreaView>
-        </View>
+          <Route exact path="/">
+            <Redirect to="/movies/theatres" />
+          </Route>
+          <Route exact path="/movies/theatres" component={Movies} />
+          <Route exact path="/movies/theatres/:id" component={MoviesDetails} />
+        </SafeAreaView>
+        {/* </SafeAreaView> */}
       </NativeRouter>
     </Provider>
   );
@@ -41,6 +37,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.black,
     height: '100%',
+    width: '100%',
   },
 });
 

@@ -4,7 +4,7 @@ describe('test module movies/reducers', () => {
   it('should return the initial state', () => {
     expect(movies(undefined, {})).toEqual({
       upcoming: {
-        data: [],
+        data: {},
         loading: true,
       },
     });
@@ -32,14 +32,14 @@ describe('test module movies/reducers', () => {
 
     expect(movies([], action)).not.toEqual({
       upcoming: {
-        data: [],
+        data: {},
         loading: false,
       },
     });
 
     expect(movies(initialState, action)).not.toEqual({
       upcoming: {
-        data: ['123'],
+        data: {results: []},
         loading: false,
       },
     });

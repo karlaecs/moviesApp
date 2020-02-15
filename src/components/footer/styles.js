@@ -3,11 +3,14 @@ import {Colors, Fonts} from '../../themes';
 
 export default StyleSheet.create({
   container: {
-    alignSelf: 'center',
+    width: '100%',
+    height: '3%',
+    alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
     bottom: 0,
     paddingBottom: 5,
+    paddingTop: 5,
   },
   text: {
     color: Colors.white,

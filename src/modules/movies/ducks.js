@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux';
 import {createActions, handleActions} from 'redux-actions';
-import {T, F, identity} from 'lodash/fp';
+import _ from 'lodash/fp';
 
 // Actions
 export const moviesActions = createActions({
   UPCOMING: {
     FETCH: {
-      REQUEST: identity,
-      RESOLVE: identity,
+      REQUEST: _.identity,
+      RESOLVE: _.identity,
     },
   },
 });
@@ -22,12 +22,12 @@ export const movies = combineReducers({
           throw: state => state,
         },
       },
-      [],
+      {},
     ),
     loading: handleActions(
       {
-        [moviesActions.upcoming.fetch.request]: T,
-        [moviesActions.upcoming.fetch.resolve]: F,
+        [moviesActions.upcoming.fetch.request]: _.T,
+        [moviesActions.upcoming.fetch.resolve]: _.F,
       },
       true,
     ),
