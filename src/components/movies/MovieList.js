@@ -16,7 +16,8 @@ const MovieList = ({items, loading, match}) => (
     scrollEnabled
     refreshing
     data={items}
-    contentContainerStyle={styles.containerList}
+    numColumns={3}
+    // contentContainerStyle={styles.containerList}
     renderItem={({item}) => <MovieItem item={item} match={match} />}
     keyExtractor={(item, index) => index.toString()}
     ItemSeparatorComponent={ItemSeparatorComponent}

@@ -4,6 +4,8 @@ import {View, TouchableOpacity, Text} from 'react-native';
 import {Link} from 'react-router-native';
 import _ from 'lodash/fp';
 
+import {strings} from '../../utils';
+
 import styles from './styles';
 
 const items = [
@@ -14,8 +16,8 @@ const items = [
 
 const Menu = ({match}) => (
   <View style={styles.container}>
-    <Text style={styles.title}>Theatres</Text>
-    <Text style={styles.title2}>Movies</Text>
+    <Text style={styles.title}>{strings.theatres}</Text>
+    <Text style={styles.title2}>{strings.movies}</Text>
 
     {/* Todo Menu with more types movies */}
     {/* {_.map(item => (

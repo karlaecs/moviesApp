@@ -1,18 +1,14 @@
 import {StyleSheet} from 'react-native';
 import {Colors, Fonts} from '../../themes';
-import {Scaling} from '../../utils';
-
-const {pixelToHpPercent, pixelToWpPercent} = Scaling;
+import {pixelToHpPercent, pixelToWpPercent} from '../../utils';
 
 export default StyleSheet.create({
   // Item
   container: {
-    // backgroundColor: 'red',
     width: pixelToWpPercent(100),
     height: pixelToHpPercent(160),
     marginRight: 10,
     marginVertical: 5,
-    justifyContent: 'space-between',
   },
   containerEmptyList: {
     height: '100%',
@@ -46,15 +42,16 @@ export default StyleSheet.create({
 
   // List
   containerList: {
+    height: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: '100%',
     marginLeft: 3,
-    // justifyContent: 'space-around',
+    marginTop: 5,
   },
   separator: {},
   header: {},
   footer: {
-    marginBottom: pixelToHpPercent(150),
+    marginBottom: pixelToHpPercent(20),
   },
 });

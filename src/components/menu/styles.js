@@ -1,14 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {Colors, Fonts} from '../../themes';
-import {Scaling} from '../../utils';
-
-const {pixelToHpPercent, pixelToWpPercent} = Scaling;
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingTop: 10,
     marginLeft: 3,
+    marginBottom: 5,
   },
   title: {
     color: Colors.white,
