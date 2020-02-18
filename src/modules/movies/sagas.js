@@ -12,13 +12,26 @@ export function* watchFetchUpcomingMovies({payload}) {
   } catch (err) {
     console.log('watchFetchUpcomingMovies', JSON.stringify(err));
     // TODO Notify user
-  } finally {
-    // Do something
+  }
+}
+
+export function* watchSearchUpcomingMovies({payload}) {
+  try {
+    const {query} = payload;
+    const response = yield call(API.get, movies.upcoming.search({query}));
+    yield put(moviesActions.upcoming.search.resolve(response.data));
+  } catch (err) {
+    console.log('watchSearchUpcomingMovies', JSON.stringify(err));
+    // TODO Notify user
   }
 }
 
 export default function*() {
   yield all([
     takeLatest(moviesActions.upcoming.fetch.request, watchFetchUpcomingMovies),
+    takeLatest(
+      moviesActions.upcoming.search.request,
+      watchSearchUpcomingMovies,
+    ),
   ]);
 }

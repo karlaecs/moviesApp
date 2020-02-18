@@ -14,6 +14,8 @@ const endpoints = {
     upcoming: {
       list: ({page}) =>
         `${REACT_APP_BASE_URL}movie/upcoming?api_key=${REACT_APP_API_KEY}&page=${page}`,
+      search: ({query}) =>
+        `${REACT_APP_BASE_URL}search/movie?api_key=${REACT_APP_API_KEY}&query=${query}`,
     },
   },
 };

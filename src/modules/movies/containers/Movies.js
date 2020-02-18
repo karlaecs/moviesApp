@@ -15,16 +15,23 @@ import {
   getUpcomingMovies,
   getLoadingUpcomingMovies,
   getUpcomingMoviesTotalPages,
+  getUpcomingMoviesSearched,
 } from '../selectors';
 import {MovieList, Search, Menu, Footer} from '../../../components';
 
 export class Movies extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onChangeText = _.debounce(this.onChangeText, 300);
+  }
+
   state = {
     text: null,
     page: 1,
     items: [],
     results: [],
-    searched: [{title: 'searched '}],
+    searched: [],
     loadingActivityIndicator: true,
     isSearched: false,
     isSubmitted: false,
@@ -36,6 +43,11 @@ export class Movies extends React.Component {
       const results = props.upcomingMovies;
       return {results, items};
     }
+
+    if (!_.isEmpty(props.searchedMovies) && state.isSubmitted) {
+      return {searched: props.searchedMovies, isSubmitted: false};
+    }
+
     return null;
   }
 
@@ -74,14 +86,15 @@ export class Movies extends React.Component {
   };
 
   // Search
-  onChangeText = text => this.setState({text});
-  onSubmitEditing = () => {
-    let {text, isSearched} = this.state;
+  onChangeText = query => {
+    let {isSearched} = this.state;
+    const {searchUpcomingMovies} = this.props;
 
-    if (_.isEmpty(text)) {
+    if (_.isEmpty(query)) {
       isSearched = false;
     } else {
       isSearched = true;
+      searchUpcomingMovies({query});
     }
 
     this.setState({
@@ -103,11 +116,7 @@ export class Movies extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Search
-          value={text}
-          onChangeText={this.onChangeText}
-          onSubmitEditing={this.onSubmitEditing}
-        />
+        <Search value={text} onChangeText={this.onChangeText} />
         <Menu match={match} />
         <MovieList
           items={isSearched ? searched : items}
@@ -132,6 +141,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+  searchedMovies: getUpcomingMoviesSearched(state),
   upcomingMovies: getUpcomingMovies(state),
   loadingUpcomingMovies: getLoadingUpcomingMovies(state),
   totalPages: getUpcomingMoviesTotalPages(state),
@@ -139,6 +149,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchUpcomingMovies: moviesActions.upcoming.fetch.request,
+  searchUpcomingMovies: moviesActions.upcoming.search.request,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

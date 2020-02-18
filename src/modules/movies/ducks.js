@@ -9,6 +9,10 @@ export const moviesActions = createActions({
       REQUEST: _.identity,
       RESOLVE: _.identity,
     },
+    SEARCH: {
+      REQUEST: _.identity,
+      RESOLVE: _.identity,
+    },
   },
 });
 
@@ -28,8 +32,19 @@ export const movies = combineReducers({
       {
         [moviesActions.upcoming.fetch.request]: _.T,
         [moviesActions.upcoming.fetch.resolve]: _.F,
+        [moviesActions.upcoming.search.request]: _.T,
+        [moviesActions.upcoming.search.resolve]: _.F,
       },
       true,
+    ),
+    searched: handleActions(
+      {
+        [moviesActions.upcoming.search.resolve]: {
+          next: (state, {payload}) => payload,
+          throw: state => state,
+        },
+      },
+      {},
     ),
   }),
 });

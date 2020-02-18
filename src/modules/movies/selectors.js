@@ -23,3 +23,8 @@ export const getLoadingUpcomingMovies = createSelector(
   _.get('movies.upcoming.loading'),
   _.identity,
 );
+
+export const getUpcomingMoviesSearched = createSelector(
+  _.getOr([], 'movies.upcoming.searched.results'),
+  _.identity,
+);

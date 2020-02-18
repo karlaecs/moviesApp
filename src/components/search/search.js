@@ -23,7 +23,7 @@ const Search = props => (
 Search.propTypes = {
   value: PropTypes.string,
   onChangeText: PropTypes.func.isRequired,
-  onSubmitEditing: PropTypes.func.isRequired,
+  onSubmitEditing: PropTypes.func,
 };
 
 Search.defaultProps = {};
