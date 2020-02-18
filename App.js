@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {Provider} from 'react-redux';
-import {SafeAreaView, StatusBar, View, StyleSheet} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NativeRouter, Route, Redirect} from 'react-router-native';
 import Colors from './src/themes/colors';
 import store from './src/store';

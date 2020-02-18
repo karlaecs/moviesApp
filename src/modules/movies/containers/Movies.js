@@ -45,15 +45,16 @@ export class Movies extends React.Component {
     }
 
     if (!_.isEmpty(props.searchedMovies) && state.isSubmitted) {
-      return {searched: props.searchedMovies, isSubmitted: false};
+      return {searched: props.searchedMovies};
     }
 
     return null;
   }
 
   componentDidMount = () => {
-    const {fetchUpcomingMovies} = this.props;
+    const {fetchUpcomingMovies, fetchGenres} = this.props;
     fetchUpcomingMovies({page: 1});
+    fetchGenres();
   };
 
   shouldComponentUpdate = (prevProps, prevState) => {
@@ -150,6 +151,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   fetchUpcomingMovies: moviesActions.upcoming.fetch.request,
   searchUpcomingMovies: moviesActions.upcoming.search.request,
+  fetchGenres: moviesActions.genres.request,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

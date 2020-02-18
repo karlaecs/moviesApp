@@ -14,6 +14,10 @@ export const moviesActions = createActions({
       RESOLVE: _.identity,
     },
   },
+  GENRES: {
+    REQUEST: _.identity,
+    RESOLVE: _.identity,
+  },
 });
 
 // Reducers
@@ -47,4 +51,13 @@ export const movies = combineReducers({
       {},
     ),
   }),
+  genres: handleActions(
+    {
+      [moviesActions.genres.resolve]: {
+        next: (state, {payload}) => payload,
+        throw: state => state,
+      },
+    },
+    {},
+  ),
 });

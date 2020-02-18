@@ -1,4 +1,5 @@
 import {put, takeLatest, call, all} from 'redux-saga/effects';
+import _ from 'lodash';
 import {endpoints, API} from '../../api';
 import {moviesActions} from './ducks';
 
@@ -7,8 +8,8 @@ const {movies} = endpoints;
 export function* watchFetchUpcomingMovies({payload}) {
   try {
     const {page} = payload;
-    const response = yield call(API.get, movies.upcoming.list({page}));
-    yield put(moviesActions.upcoming.fetch.resolve(response.data));
+    const {data} = yield call(API.get, movies.upcoming.list({page}));
+    yield put(moviesActions.upcoming.fetch.resolve(data));
   } catch (err) {
     console.log('watchFetchUpcomingMovies', JSON.stringify(err));
     // TODO Notify user
@@ -18,10 +19,20 @@ export function* watchFetchUpcomingMovies({payload}) {
 export function* watchSearchUpcomingMovies({payload}) {
   try {
     const {query} = payload;
-    const response = yield call(API.get, movies.upcoming.search({query}));
-    yield put(moviesActions.upcoming.search.resolve(response.data));
+    const {data} = yield call(API.get, movies.upcoming.search({query}));
+    yield put(moviesActions.upcoming.search.resolve(data));
   } catch (err) {
     console.log('watchSearchUpcomingMovies', JSON.stringify(err));
+    // TODO Notify user
+  }
+}
+
+export function* watchFetchGenres({payload}) {
+  try {
+    const {data} = yield call(API.get, movies.genres);
+    yield put(moviesActions.genres.resolve(_.keyBy(data.genres, 'id')));
+  } catch (err) {
+    console.log('watchFetchGenres', JSON.stringify(err));
     // TODO Notify user
   }
 }
@@ -33,5 +44,6 @@ export default function*() {
       moviesActions.upcoming.search.request,
       watchSearchUpcomingMovies,
     ),
+    takeLatest(moviesActions.genres.request, watchFetchGenres),
   ]);
 }

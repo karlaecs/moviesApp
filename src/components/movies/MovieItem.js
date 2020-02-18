@@ -16,7 +16,9 @@ const MovieItem = ({item, match}) => (
           <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
             {item.title}
           </Text>
-          <Text style={styles.subtitle}>2019 - Adventure</Text>
+          <Text style={styles.subtitle}>
+            {item.year} - {item.genre}
+          </Text>
         </View>
       </TouchableOpacity>
     </Link>

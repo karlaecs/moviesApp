@@ -17,6 +17,7 @@ const endpoints = {
       search: ({query}) =>
         `${REACT_APP_BASE_URL}search/movie?api_key=${REACT_APP_API_KEY}&query=${query}`,
     },
+    genres: `/genre/movie/list?api_key=${REACT_APP_API_KEY}`,
   },
 };
 
