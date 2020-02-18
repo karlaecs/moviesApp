@@ -8,10 +8,11 @@
     "start": " yarn test -u && react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "version": "npm run build-android-debug && npm run changelog && git add CHANGELOG.md",
+    "version": "npm run build && npm run changelog && git add CHANGELOG.md",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "clean-cache": "react-native start --reset-cache",
-    "build-android-debug": "cd android && ./gradlew assembleDebug && cd .."
+    "build-android-debug": "cd android && ./gradlew assembleDebug && cd ..",
+    "build": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
     "axios": "0.19.2",
