@@ -9,11 +9,21 @@ This project is an mobile application written in React Native, which consumes da
 - Node 8.16+
 - Yarn 0.25+ or NPM 5.2+
 
+Android development environment
+https://facebook.github.io/react-native/docs/getting-started
+
+- Java 8
+
+- Android SDK
+- Android SDK Platform
+- Android Virtual Device
+
 # Setup
 
 Create a file ".env" and add:
 
 REACT_APP_BASE_URL={API_URL}
+
 REACT_APP_API_KEY={API_KEY}
 
 # Install Dependencies
