@@ -35,5 +35,6 @@ export const getLoadingUpcomingMovies = createSelector(
 
 export const getUpcomingMoviesSearched = createSelector(
   _.getOr([], 'movies.upcoming.searched.results'),
-  _.map(movie => getFormattedMovie(movie)),
+  _.getOr({}, 'movies.genres'),
+  (movies, genres) => _.map(movie => getFormattedMovie(movie, genres))(movies),
 );
