@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-import {REACT_APP_BASE_URL, REACT_APP_API_KEY} from 'react-native-dotenv';
+import {
+  REACT_APP_BASE_URL,
+  REACT_APP_API_KEY,
+  REACT_APP_BASE_URL_IMAGE,
+} from 'react-native-dotenv';
 
 const API = axios.create({
   baseURL: REACT_APP_BASE_URL,
@@ -8,6 +12,7 @@ const API = axios.create({
 });
 
 const getApiKey = () => REACT_APP_API_KEY;
+const getBaseUrlImage = REACT_APP_BASE_URL_IMAGE;
 
 const endpoints = {
   movies: {
@@ -21,4 +26,4 @@ const endpoints = {
   },
 };
 
-export {API, getApiKey, endpoints};
+export {API, getApiKey, endpoints, getBaseUrlImage};

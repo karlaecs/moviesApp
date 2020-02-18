@@ -17,7 +17,14 @@ export default StyleSheet.create({
   },
   card: {
     height: '80%',
-    backgroundColor: Colors.navyBlue,
+    borderColor: Colors.dimGray,
+    borderWidth: 1,
+    // backgroundColor: Colors.navyBlue,
+  },
+  image: {
+    height: '100%',
+    // width: pixelToWpPercent(100),
+    // height: pixelToHpPercent(160),
   },
   legend: {
     marginTop: 5,
