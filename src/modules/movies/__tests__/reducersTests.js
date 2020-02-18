@@ -1,13 +1,17 @@
 import {movies} from '../ducks';
 
+const initialState = {
+  genres: {},
+  upcoming: {
+    data: {},
+    loading: true,
+    searched: {},
+  },
+};
+
 describe('test module movies/reducers', () => {
   it('should return the initial state', () => {
-    expect(movies(undefined, {})).toEqual({
-      upcoming: {
-        data: {},
-        loading: true,
-      },
-    });
+    expect(movies(undefined, {})).toEqual(initialState);
   });
 
   it('should handle action UPCOMING/FETCH/RESOLVE', () => {
@@ -16,10 +20,10 @@ describe('test module movies/reducers', () => {
       payload: {results: ['123']},
     };
 
-    const initialState = [
+    const state = [
       {
         data: {results: ['karla', 'elisabeth']},
-        loading: true,
+        ...initialState,
       },
     ];
 
@@ -27,7 +31,9 @@ describe('test module movies/reducers', () => {
       upcoming: {
         data: {results: ['123']},
         loading: false,
+        searched: {},
       },
+      genres: {},
     });
 
     expect(movies([], action)).not.toEqual({
@@ -37,7 +43,7 @@ describe('test module movies/reducers', () => {
       },
     });
 
-    expect(movies(initialState, action)).not.toEqual({
+    expect(movies(state, action)).not.toEqual({
       upcoming: {
         data: {results: []},
         loading: false,
